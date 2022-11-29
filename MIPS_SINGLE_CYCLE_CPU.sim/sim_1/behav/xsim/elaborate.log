@@ -1,6 +1,6 @@
 Vivado Simulator v2022.1
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
-Running: E:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot Adder_tb_behav xil_defaultlib.Adder_tb -log elaborate.log 
+Running: E:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot ALU_TB_behav xil_defaultlib.ALU_TB -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Completed static elaboration
@@ -11,6 +11,6 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
-Compiling architecture behavior of entity xil_defaultlib.ALUcontrol [alucontrol_default]
-Compiling architecture behavioral of entity xil_defaultlib.adder_tb
-Built simulation snapshot Adder_tb_behav
+Compiling architecture structure of entity xil_defaultlib.ALU [alu_default]
+Compiling architecture behavioral of entity xil_defaultlib.alu_tb
+Built simulation snapshot ALU_TB_behav

@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Nov 29 00:47:32 2022
+# Process ID: 6316
+# Current directory: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.runs/synth_1
+# Command line: vivado.exe -log ALU.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ALU.tcl
+# Log file: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.runs/synth_1/ALU.vds
+# Journal file: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.runs/synth_1\vivado.jou
+# Running On: DESKTOP-19B8KHQ, OS: Windows, CPU Frequency: 3194 MHz, CPU Physical cores: 12, Host memory: 17110 MB
+#-----------------------------------------------------------
+source ALU.tcl -notrace
