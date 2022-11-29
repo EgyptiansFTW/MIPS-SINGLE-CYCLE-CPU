@@ -33,3 +33,17 @@ source ALU_TB.tcl
 close_sim
 launch_runs synth_1 -jobs 6
 wait_on_run synth_1
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
