@@ -1,7 +1,12 @@
-Vivado Simulator v2022.1
+Vivado Simulator v2022.2
 Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+<<<<<<< HEAD
 Running: E:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot ALU_TB_behav xil_defaultlib.ALU_TB -log elaborate.log 
 Using 2 slave threads.
+=======
+Running: /tools/Xilinx/Vivado/2022.2/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L secureip --snapshot InstructionMemory_tb_behav xil_defaultlib.InstructionMemory_tb -log elaborate.log 
+Using 8 slave threads.
+>>>>>>> 24cead4 (Adding Instr&Data Memory)
 Starting static elaboration
 Completed static elaboration
 Starting simulation data flow analysis
@@ -11,6 +16,12 @@ Compiling package std.standard
 Compiling package std.textio
 Compiling package ieee.std_logic_1164
 Compiling package ieee.numeric_std
+<<<<<<< HEAD
 Compiling architecture structure of entity xil_defaultlib.ALU [alu_default]
 Compiling architecture behavioral of entity xil_defaultlib.alu_tb
 Built simulation snapshot ALU_TB_behav
+=======
+Compiling architecture behavioral of entity xil_defaultlib.InstructionMemory [instructionmemory_default]
+Compiling architecture behavioral of entity xil_defaultlib.instructionmemory_tb
+Built simulation snapshot InstructionMemory_tb_behav
+>>>>>>> 24cead4 (Adding Instr&Data Memory)
