@@ -47,3 +47,4 @@ source ALU_TB.tcl
 close_sim
 launch_simulation
 source ALU_TB.tcl
+close_sim

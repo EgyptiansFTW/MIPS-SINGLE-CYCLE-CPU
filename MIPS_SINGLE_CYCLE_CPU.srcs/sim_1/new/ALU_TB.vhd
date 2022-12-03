@@ -74,5 +74,25 @@ OPCODE_tb <= "1101";
 X_tb <= X"00000002";
 Y_tb<= X"00000003";
 wait for 20 ns;
+--Logical Shift left
+OPCODE_tb <= "1001";
+Y_tb<= X"00000003";
+SHAMT_tb<="00001";
+wait for 20 ns;
+--Logical Shift right
+OPCODE_tb <= "1010";
+Y_tb<= X"00000003";
+SHAMT_tb<="00001";
+wait for 20 ns;
+--Rotate left
+OPCODE_tb <= "1011";
+Y_tb<= X"00000003";
+SHAMT_tb<="00001";
+wait for 20 ns;
+--Rotate right
+OPCODE_tb <= "1100";
+Y_tb<= X"00000003";
+SHAMT_tb<="00001";
+wait for 20 ns;
 end process;
 end Behavioral;
