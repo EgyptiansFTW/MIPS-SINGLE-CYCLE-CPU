@@ -22,8 +22,8 @@ architecture Behavioral of DataMemory_tb is
     component DataMemory is
         generic(
             width: INTEGER := 32;
-            addr : INTEGER := 8;
-            depth: INTEGER := 2**8 );
+            addr : INTEGER := 9;
+            depth: INTEGER := 2**9 );
         port(
             CLK : in STD_LOGIC;
             WEN : in STD_LOGIC;
@@ -34,12 +34,12 @@ architecture Behavioral of DataMemory_tb is
     end component DataMemory;
 
     signal CLK_tb, WEN_tb, REN_tb: std_logic;
-    signal Address_tb: std_logic_vector(7 downto 0);
+    signal Address_tb: std_logic_vector(8 downto 0);
     signal WriteData_tb, ReadData_tb: std_logic_vector(31 downto 0);
 
 begin
 
-    DMem: DataMemory generic map(width => 32, addr => 8, depth => 2**8)
+    DMem: DataMemory generic map(width => 32, addr => 9, depth => 2**9)
                      port map(CLK => CLK_tb, WEN => WEN_tb, REN => REN_tb, 
                      WriteData => WriteData_tb, Address => Address_tb, ReadData => ReadData_tb);
 

@@ -17,8 +17,8 @@ use std.textio.all;
 entity DataMemory is
     generic(
         width : INTEGER := 32;       -- Using 32b instruction set
-        addr  : INTEGER := 8;        -- 8 Bit address used to read/write
-        depth : INTEGER := 2**8 );   -- Using 32 x 2**8 memory array
+        addr  : INTEGER := 9;        -- 8 Bit address used to read/write
+        depth : INTEGER := 2**9 );   -- Using 32 x 2**8 memory array
     port(
         CLK       : in STD_LOGIC;
         WEN       : in STD_LOGIC;
@@ -30,22 +30,26 @@ end DataMemory;
 
 architecture Behavioral of DataMemory is
 
-    type memory is array(depth-1 downto 0) of bit_vector(width-1 downto 0);
+    type memory is array(0 to depth-1) of bit_vector(width-1 downto 0);
+        -- Memory stored 0 -> 512 | File(0) == memory(0)
 
     -- Function will read contents of file into Memory Array
     impure function InitRamFromFile (RamFileName : in string) return memory is
         FILE RamFile : text open read_mode is in RamFileName;
         variable RamFileLine : line;
         variable tmp_bv : bit_vector(width-1 downto 0);
+        variable emt_bv : bit_vector(width-1 downto 0) := (others => '0');
         variable tmpMEM : memory;
     begin
-        if(not endfile(RamFile)) then
-            for I in memory'range loop
+        for I in memory'range loop
+            if(not endfile(RamFile)) then
                 readline (RamFile, RamFileLine);
                 read (RamFileLine, tmp_bv);
                 tmpMEM(I) := (tmp_bv);
-            end loop;
-        end if;
+            else 
+                tmpMEM(I):= (emt_bv);
+            end if;
+        end loop;
         return tmpMEM;
     end function;
     
