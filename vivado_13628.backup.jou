@@ -1,0 +1,50 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Mon Nov 28 23:00:01 2022
+# Process ID: 13628
+# Current directory: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent896 E:\Xilinx\MIPS_SINGLE_CYCLE_CPU\MIPS-SINGLE-CYCLE-CPU\MIPS_SINGLE_CYCLE_CPU.xpr
+# Log file: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/vivado.log
+# Journal file: E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU\vivado.jou
+# Running On: DESKTOP-19B8KHQ, OS: Windows, CPU Frequency: 3194 MHz, CPU Physical cores: 12, Host memory: 17110 MB
+#-----------------------------------------------------------
+start_gui
+open_project E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.xpr
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.srcs/sim_1/new/ALU_TB.vhd w ]
+add_files -fileset sim_1 E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.srcs/sim_1/new/ALU_TB.vhd
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top ALU_TB [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode DisplayOnly [current_project]
+launch_simulation
+launch_simulation
+launch_simulation
+source ALU_TB.tcl
+CLOSE_sim
+close_sim
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_runs synth_1 -jobs 6
+wait_on_run synth_1
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
+launch_simulation
+source ALU_TB.tcl
+close_sim
