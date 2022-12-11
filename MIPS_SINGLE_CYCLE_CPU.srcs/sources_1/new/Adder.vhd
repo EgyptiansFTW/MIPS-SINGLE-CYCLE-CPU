@@ -11,6 +11,7 @@ end Adder;
 architecture Behavioral of Adder is
 
 begin
-SUM <= std_logic_vector(signed(X) + signed(Y));
+
+    SUM <= std_logic_vector(signed(X) + signed(Y));
 
 end Behavioral;

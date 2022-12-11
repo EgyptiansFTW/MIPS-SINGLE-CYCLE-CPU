@@ -15,14 +15,14 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity ShiftRegister is
     port(
-        ShiftInput : in std_logic_vector(25 downto 0);
-        ShiftOutput: out std_logic_vector(27 downto 0) );
+        ShiftInput : in std_logic_vector(31 downto 0);
+        ShiftOutput: out std_logic_vector(31 downto 0) );
 end ShiftRegister;
 
 architecture Behavioral of ShiftRegister is
     
 begin
 
-    ShiftOutput <= ShiftInput & "00";
+    ShiftOutput <= ShiftInput(29 downto 0) & "00";
 
 end Behavioral;

@@ -1,7 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-
 entity control is
     port(
         signal OPCODE : in std_logic_vector(5 downto 0);
@@ -10,7 +9,6 @@ entity control is
         signal ALUOP : out std_logic_vector(1 downto 0)  
     );
 end entity control;
-
 
 architecture behavior of control is
     begin
@@ -149,4 +147,5 @@ architecture behavior of control is
                         ALUOP <= "--";
                 end case;
         end process;
+        
 end architecture behavior;

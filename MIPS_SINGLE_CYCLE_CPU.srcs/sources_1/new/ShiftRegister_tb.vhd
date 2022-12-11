@@ -20,12 +20,12 @@ architecture Behavioral of ShiftRegister_tb is
 
     component ShiftRegister is
         port(
-            ShiftInput : in std_logic_vector(25 downto 0);
-            ShiftOutput: out std_logic_vector(27 downto 0) );
+            ShiftInput : in std_logic_vector(31 downto 0);
+            ShiftOutput: out std_logic_vector(31 downto 0) );
     end component ShiftRegister;
     
-    signal ShiftInput_tb: std_logic_vector(25 downto 0);
-    signal ShiftOutput_tb: std_logic_vector(27 downto 0);
+    signal ShiftInput_tb: std_logic_vector(31 downto 0);
+    signal ShiftOutput_tb: std_logic_vector(31 downto 0);
 
 begin
 

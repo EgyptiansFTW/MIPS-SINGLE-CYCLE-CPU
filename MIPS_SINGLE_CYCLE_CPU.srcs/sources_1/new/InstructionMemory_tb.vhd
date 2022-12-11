@@ -21,20 +21,42 @@ architecture Behavioral of InstructionMemory_tb is
 
     component InstructionMemory is
         generic(
-            width: INTEGER := 32;
-            addr : INTEGER := 8;
-            depth: INTEGER := 2**8 );
+            width: INTEGER := 8;
+            addr : INTEGER := 11;
+            depth: INTEGER := 2**11 );
         port(
-            Address   : in STD_LOGIC_VECTOR (addr-1 downto 0);
+            Clk          : in STD_LOGIC;
+            Address      : in STD_LOGIC_VECTOR (addr-1 downto 0);
             Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
     end component InstructionMemory;
 
-    signal Address_tb: std_logic_vector(7 downto 0);
+    signal Clk_tb: std_logic := '0';
+    signal Address_tb: std_logic_vector(10 downto 0);
     signal Instruction_tb: std_logic_vector(31 downto 0);
 
 begin
 
-    IMem: InstructionMemory generic map(width => 32, addr => 8, depth => 2**8)
-                            port map(Address => Address_tb, Instruction => Instruction_tb);
+    IMem: InstructionMemory generic map(width => 8, addr => 11, depth => 2**11)
+                            port map(Clk => Clk_tb, Address => Address_tb, Instruction => Instruction_tb);
+    
+    process
+        begin
+        wait for 8ns;
+        Clk_tb <= NOT Clk_tb;
+    end process;
+    
+    process 
+        begin 
+            Address_tb <= "00000000000"; --Addr 0
+        wait for 16ns;    
+            Address_tb <= "00000000010"; --Addr 2
+        wait for 16ns;    
+            Address_tb <= "00000000100"; --Addr 4
+        wait for 16ns;    
+            Address_tb <= "00000001000"; --Addr 8
+        wait for 16ns;    
+            Address_tb <= "11111111100"; --Addr 2044
+        wait;
+    end process;
 
 end Behavioral;

@@ -16,16 +16,16 @@ use std.textio.all;
 
 entity DataMemory is
     generic(
-        width : INTEGER := 32;       -- Using 32b instruction set
-        addr  : INTEGER := 9;        -- 8 Bit address used to read/write
-        depth : INTEGER := 2**9 );   -- Using 32 x 2**8 memory array
+        width : INTEGER := 8;       -- Using 32b instruction set
+        addr  : INTEGER := 11;        -- 8 Bit address used to read/write
+        depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
     port(
         CLK       : in STD_LOGIC;
         WEN       : in STD_LOGIC;
         REN       : in STD_LOGIC;
         WriteData : in STD_LOGIC_VECTOR (31 downto 0);
         Address   : in STD_LOGIC_VECTOR (addr-1 downto 0);
-        ReadData  : out STD_LOGIC_VECTOR (31 downto 0) );
+        ReadData  : out STD_LOGIC_VECTOR (31 downto 0) := (others => '0') );
 end DataMemory;
 
 architecture Behavioral of DataMemory is
@@ -53,24 +53,34 @@ architecture Behavioral of DataMemory is
         return tmpMEM;
     end function;
     
---    signal DataMemory: memory := (others => (others => '0'));
+--    signal DatMem: memory := (others => (others => '0'));
         -- Initialize all memory locations to be '0'
     
-    signal DataMemory : memory := InitRamFromFile("dataMem.data");
+    signal DatMem : memory := InitRamFromFile("instrMem.data");
         -- Initialize all memory locations from specified file
     
 begin
-    
-    process(CLK, WEN, REN) 
-    begin
-        if rising_edge(CLK) then
-            if WEN = '1' then
-                DataMemory(to_integer(unsigned(Address))) <= to_bitvector(WriteData);
+
+    -- Take smaller 8b words and compile them into Instruction 32b word. Little Endian
+        -- ie:  0x74_45_be_af -> stored as -> { 0-af | 1-be | 2-45 | 3-74 }
+    process(Clk, WEN, REN) 
+        begin
+        if rising_edge(Clk) then
+            if  (to_integer(unsigned(Address)) mod 4) = 0 then
+                if WEN = '1' then
+                    DatMem(to_integer(unsigned(Address))) <= to_bitvector(WriteData(7 downto 0));
+                    DatMem(to_integer(unsigned(Address))+1) <= to_bitvector(WriteData(15 downto 8));
+                    DatMem(to_integer(unsigned(Address))+2) <= to_bitvector(WriteData(23 downto 16));
+                    DatMem(to_integer(unsigned(Address))+3) <= to_bitvector(WriteData(31 downto 24));
+                end if;
+                if REN = '1' then
+                    ReadData(7 downto 0) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))) );
+                    ReadData(15 downto 8) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+1) );
+                    ReadData(23 downto 16) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+2) );
+                    ReadData(31 downto 24) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+3) );
+                end if;
             end if;
         end if;
     end process;
-
-    ReadData <= to_stdlogicvector(DataMemory(to_integer(unsigned(Address)))) when REN = '1' 
-                else (others => '0');
 
 end Behavioral;

@@ -22,6 +22,8 @@ entity Registers is
         AddrR1    : in STD_LOGIC_VECTOR (4 downto 0);
         AddrR2    : in STD_LOGIC_VECTOR (4 downto 0);
         AddrWR    : in STD_LOGIC_VECTOR (4 downto 0);
+        LO        : in STD_LOGIC_VECTOR (width-1 downto 0);
+        HI        : in STD_LOGIC_VECTOR (width-1 downto 0);
         WriteReg  : in STD_LOGIC_VECTOR (width-1 downto 0);
         ReadReg1  : out STD_LOGIC_VECTOR (width-1 downto 0);
         ReadReg2  : out STD_LOGIC_VECTOR (width-1 downto 0));
@@ -34,6 +36,9 @@ architecture Behavioral of Registers is
     
     signal RegFile: regArray := (others => (others => '0'));   
         -- Initialize all registers in file to 0
+        
+    signal LO_previous: STD_LOGIC_VECTOR (width-1 downto 0) := (others => '0');
+    signal HI_previous: STD_LOGIC_VECTOR (width-1 downto 0) := (others => '0');
                 
 begin
 
@@ -41,7 +46,17 @@ begin
         begin
         if rising_edge(CLK) then
             if WEN = '1' then
-                RegFile(to_integer(unsigned(AddrWR))) <= WriteReg;
+                if NOT( (AddrR1 OR AddrR2) = ("11111" OR "11110") ) then 
+                    RegFile(to_integer(unsigned(AddrWR))) <= WriteReg;
+                else
+                    if NOT(LO = LO_previous) then
+                        RegFile(30) <= LO;
+                        LO_previous <= LO;
+                    elsif NOT(HI = HI_previous) then
+                        RegFile(31) <= HI;
+                        HI_previous <= HI;
+                    end if;
+                end if;
             end if;
         end if;
     end process;

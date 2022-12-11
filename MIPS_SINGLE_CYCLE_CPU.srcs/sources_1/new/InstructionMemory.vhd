@@ -16,10 +16,11 @@ use std.textio.all;
 
 entity InstructionMemory is
     generic(
-        width : INTEGER := 32;       -- Using 32b instruction set
-        addr  : INTEGER := 8;        -- 8 Bit address used to read/write
-        depth : INTEGER := 2**8 );   -- Using 32 x 2**8 memory array
+        width : INTEGER := 8;       -- Using 32b instruction set
+        addr  : INTEGER := 11;        -- 8 Bit address used to read/write
+        depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
     port(
+        Clk          : in STD_LOGIC;
         Address      : in STD_LOGIC_VECTOR (addr-1 downto 0);
         Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
 end InstructionMemory;
@@ -27,7 +28,7 @@ end InstructionMemory;
 architecture Behavioral of InstructionMemory is
 
     type memory is array(0 to depth-1) of bit_vector(width-1 downto 0);
-        -- Memory stored 0 -> 512 | File(0) == memory(0)
+        -- Memory stored 0 -> 2048 | File(0) == memory(0)
 
     -- Function will read contents of file into Memory Array
     impure function InitRamFromFile (RamFileName : in string) return memory is
@@ -49,14 +50,25 @@ architecture Behavioral of InstructionMemory is
         return tmpMEM;
     end function;
     
---    signal InstructionMemory: memory := (others => (others => '0'));
+--    signal IstrMem: memory := (others => (others => '0'));
         -- Initialize all memory locations to be '0'
     
-    signal InstructionMemory : memory := InitRamFromFile("dataMem.data");
+    signal IstrMem : memory := InitRamFromFile("instrMem.data");
         -- Initialize all memory locations from specified file
     
 begin
-    
-    Instruction <= to_stdlogicvector(InstructionMemory(to_integer(unsigned(Address))));
-
+    -- Take smaller 8b words and compile them into Instruction 32b word. Little Endian
+        -- ie:  0x74_45_be_af -> stored as -> { 0-af | 1-be | 2-45 | 3-74 }
+    process(Clk) 
+        begin
+        if rising_edge(Clk) then
+            if  (to_integer(unsigned(Address)) mod 4) = 0 then
+                Instruction(7 downto 0) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))) );
+                Instruction(15 downto 8) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+1) );
+                Instruction(23 downto 16) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+2) );
+                Instruction(31 downto 24) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+3) );
+            end if;
+        end if;
+    end process;
+        
 end Behavioral;
