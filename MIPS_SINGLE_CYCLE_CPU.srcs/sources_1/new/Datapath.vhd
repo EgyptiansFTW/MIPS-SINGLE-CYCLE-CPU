@@ -12,6 +12,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
+use work.ComponentPkg.ALL;
 
 entity Datapath is
     port(
@@ -31,104 +32,102 @@ end Datapath;
 
 architecture Behavioral of Datapath is
 
-    component ALUcontrol is
-        port(
-            signal ALUOP : in std_logic_vector(1 downto 0); --CTL SIG
-            signal FUNCT : in std_logic_vector(5 downto 0); --INST(5-0)
-            signal OPCODE : out std_logic_vector(3 downto 0)--To ALU
-        );
-    end component ALUcontrol;
+--    component ALUcontrol is
+--        port(
+--            signal ALUOP : in std_logic_vector(1 downto 0); --CTL SIG
+--            signal FUNCT : in std_logic_vector(5 downto 0); --INST(5-0)
+--            signal OPCODE : out std_logic_vector(3 downto 0)--To ALU
+--        );
+--    end component ALUcontrol;
     
-    component ALU is
-        port(
-            signal OPCODE : in std_logic_vector(3 downto 0);--From CTL
-            signal SHAMT : in std_logic_vector(4 downto 0); --
-            signal X, Y : in std_logic_vector(31 downto 0);
-            signal Z : out std_logic;
-            signal R, LO, HI : out std_logic_vector(31 downto 0)
-        );
-    end component  ALU;
+--    component ALU is
+--        port(
+--            signal OPCODE : in std_logic_vector(3 downto 0);--From CTL
+--            signal SHAMT : in std_logic_vector(4 downto 0); --
+--            signal X, Y : in std_logic_vector(31 downto 0);
+--            signal Z : out std_logic;
+--            signal R, LO, HI : out std_logic_vector(31 downto 0)
+--        );
+--    end component  ALU;
     
-    component Registers is
-        generic(
-            width: INTEGER := 32);
-        port(
-            CLK       : in STD_LOGIC;
-            WEN       : in STD_LOGIC;
-            AddrR1    : in STD_LOGIC_VECTOR (4 downto 0);
-            AddrR2    : in STD_LOGIC_VECTOR (4 downto 0);
-            AddrWR    : in STD_LOGIC_VECTOR (4 downto 0);
-            LO        : in STD_LOGIC_VECTOR (width-1 downto 0);
-            HI        : in STD_LOGIC_VECTOR (width-1 downto 0);
-            WriteReg  : in STD_LOGIC_VECTOR (width-1 downto 0);
-            ReadReg1  : out STD_LOGIC_VECTOR (width-1 downto 0);
-            ReadReg2  : out STD_LOGIC_VECTOR (width-1 downto 0));
-    end component Registers;
+--    component Registers is
+--        generic(
+--            width: INTEGER := 32);
+--        port(
+--            CLK       : in STD_LOGIC;
+--            WEN       : in STD_LOGIC;
+--            AddrR1    : in STD_LOGIC_VECTOR (4 downto 0);
+--            AddrR2    : in STD_LOGIC_VECTOR (4 downto 0);
+--            AddrWR    : in STD_LOGIC_VECTOR (4 downto 0);
+--            LO        : in STD_LOGIC_VECTOR (width-1 downto 0);
+--            HI        : in STD_LOGIC_VECTOR (width-1 downto 0);
+--            WriteReg  : in STD_LOGIC_VECTOR (width-1 downto 0);
+--            ReadReg1  : out STD_LOGIC_VECTOR (width-1 downto 0);
+--            ReadReg2  : out STD_LOGIC_VECTOR (width-1 downto 0));
+--    end component Registers;
     
-    component SignExtend is
-        port(
-            InstrInput: in std_logic_vector(15 downto 0);
-            ExtendOut : out std_logic_vector(31 downto 0)
-        );
-    end component SignExtend;
+--    component SignExtend is
+--        port(
+--            InstrInput: in std_logic_vector(15 downto 0);
+--            ExtendOut : out std_logic_vector(31 downto 0)
+--        );
+--    end component SignExtend;
     
-    component ShiftRegister is
-        port(
-            ShiftInput : in std_logic_vector(31 downto 0);
-            ShiftOutput: out std_logic_vector(31 downto 0) 
-        );
-    end component ShiftRegister;
+--    component ShiftRegister is
+--        port(
+--            ShiftInput : in std_logic_vector(31 downto 0);
+--            ShiftOutput: out std_logic_vector(31 downto 0) 
+--        );
+--    end component ShiftRegister;
     
-    component InstructionMemory is
-        generic(
-            width : INTEGER := 8;       -- Using 32b instruction set
-            addr  : INTEGER := 11;        -- 8 Bit address used to read/write
-            depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
-        port(
-            Address      : in STD_LOGIC_VECTOR (addr-1 downto 0);
-            Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
-    end component InstructionMemory;
+--    component InstructionMemory is
+--        generic(
+--            width : INTEGER := 8;       -- Using 32b instruction set
+--            addr  : INTEGER := 11;        -- 8 Bit address used to read/write
+--            depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
+--        port(
+--            Clk          : in STD_LOGIC;
+--            Address      : in STD_LOGIC_VECTOR (31 downto 0);
+--            Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
+--    end component InstructionMemory;
     
-    component DataMemory is
-        generic(
-            width : INTEGER := 8;       -- Using 32b instruction set
-            addr  : INTEGER := 11;        -- 8 Bit address used to read/write
-            depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
-        port(
-            CLK       : in STD_LOGIC;
-            WEN       : in STD_LOGIC;
-            REN       : in STD_LOGIC;
-            WriteData : in STD_LOGIC_VECTOR (31 downto 0);
-            Address   : in STD_LOGIC_VECTOR (addr-1 downto 0);
-            ReadData  : out STD_LOGIC_VECTOR (31 downto 0) );
-    end component DataMemory;
+--    component DataMemory is
+--        generic(
+--            width : INTEGER := 8;       -- Using 32b instruction set
+--            addr  : INTEGER := 11;        -- 8 Bit address used to read/write
+--            depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
+--        port(
+--            CLK       : in STD_LOGIC;
+--            WEN       : in STD_LOGIC;
+--            REN       : in STD_LOGIC;
+--            WriteData : in STD_LOGIC_VECTOR (31 downto 0);
+--            Address   : in STD_LOGIC_VECTOR (31 downto 0);
+--            ReadData  : out STD_LOGIC_VECTOR (31 downto 0) );
+--    end component DataMemory;
     
-    component Adder is
-        Port ( X : in STD_LOGIC_VECTOR (31 downto 0);
-               Y : in STD_LOGIC_VECTOR (31 downto 0);
-               SUM : out STD_LOGIC_VECTOR (31 downto 0));
-    end component Adder;
+--    component Adder is
+--        Port ( X : in STD_LOGIC_VECTOR (31 downto 0);
+--               Y : in STD_LOGIC_VECTOR (31 downto 0);
+--    end component Adder;
     
-    component MUX is
-        port(
-            signal SEL : in std_logic;
-            signal A, B : in std_logic_vector(31 downto 0);
-            signal O : out std_logic_vector(31 downto 0)
-        );
-    end component MUX;
-    
+--    component MUX is
+--        port(
+--            signal SEL : in std_logic;
+--            signal A, B : in std_logic_vector(31 downto 0);
+--            signal O : out std_logic_vector(31 downto 0)
+--        );
+--    end component MUX;
+  
     constant width: INTEGER := 32;       -- Using 32b instruction set
-    constant addr : INTEGER := 8;    -- 9b address used to read/write
-    constant depth: INTEGER := 2**8;  -- Using 32 x 2**8 memory array
-    signal PC: std_logic_vector(width-1 downto 0);
+    constant MEMwidth: INTEGER := 8;       -- Using 8b word set
+    constant addr : INTEGER := 11;    -- 9b address used to read/write
+    constant depth: INTEGER := 2**11;  -- Using 32 x 2**8 memory array
     
 ------ ALU CONTROL SIGNALS -----------------------------------------
-    --signal ALUOP_DP : std_logic_vector(1 downto 0);  --Control Sig
     signal FUNCT_DP : std_logic_vector(5 downto 0);
     signal ALU_OPCODE : std_logic_vector(3 downto 0);
     
 ------ ALU SIGNALS -------------------------------------------------
-    --signal OPCODE : std_logic_vector(3 downto 0);
     signal SHAMT_DP : std_logic_vector(4 downto 0);
     signal X_DP, Y_DP : std_logic_vector(31 downto 0);
     signal Z_DP : std_logic;
@@ -136,7 +135,6 @@ architecture Behavioral of Datapath is
     
 ------ REGISTER SIGNALS --------------------------------------------
     signal CLK_DP       : STD_LOGIC;
-    --signal RegWrite     : STD_LOGIC;                 --Control Sig
     signal AddrR1_DP    : STD_LOGIC_VECTOR (4 downto 0);
     signal AddrR2_DP    : STD_LOGIC_VECTOR (4 downto 0);
     signal AddrWR_DP    : STD_LOGIC_VECTOR (4 downto 0);
@@ -145,7 +143,6 @@ architecture Behavioral of Datapath is
     signal ReadReg2_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     
 ------ SIGN EXTEND SIGNALS -----------------------------------------
-    --signal InstrInput_DP: std_logic_vector(15 downto 0);
     signal ExtendOut_DP : std_logic_vector(width-1 downto 0);
     
 ------ SHIFT SIGNALS -----------------------------------------------
@@ -157,9 +154,6 @@ architecture Behavioral of Datapath is
     signal Instruction_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     
 ------ DATA MEMORY SIGNALS -----------------------------------------
-    --signal CLK_DP      : STD_LOGIC;
-    --signal MemWrite    : STD_LOGIC;                  --Control Sig  
-    --signal MemRead     : STD_LOGIC;                  --Control Sig
     signal WriteData_DP: STD_LOGIC_VECTOR (width-1 downto 0);
     signal Address_D_DP: STD_LOGIC_VECTOR (addr-1 downto 0);
     signal ReadData_DP : STD_LOGIC_VECTOR (width-1 downto 0);
@@ -175,7 +169,7 @@ architecture Behavioral of Datapath is
     signal O_DP      : std_logic_vector(width-1 downto 0);
     
 ------ WIRING SIGNALS -------------------------------------------------
-    signal PC_CURRENT : std_logic_vector(width-1 downto 0);
+    signal PC_CURRENT : std_logic_vector(width-1 downto 0) := (others => '0');
     signal PC_NEXT : std_logic_vector(width-1 downto 0);
     signal PC_PLUS4 : std_logic_vector(width-1 downto 0);
     
@@ -233,11 +227,11 @@ begin
                                 ReadReg1 => ReadReg1_DP, 
                                 ReadReg2 => ReadReg2_DP);
     
-    InstMem: InstructionMemory generic map(width => 8, addr => 11, depth => 2**11)
-                               port map (Address => PC_CURRENT, 
+    InstMem: InstructionMemory generic map(width => MEMwidth, addr => addr, depth => depth)
+                               port map (Address => PC_CURRENT, Clk => CLK_in,
                                          Instruction => Instruction_DP);
                                
-    DatMem: DataMemory generic map(width => 8, addr => 11, depth => 2**11)
+    DatMem: DataMemory generic map(width => MEMwidth, addr => addr, depth => depth)
                        port map(CLK => CLK_in, 
                                 WEN => MemWrite, 
                                 REN => MemRead, 
@@ -246,7 +240,7 @@ begin
                                 ReadData => ReadData_DP);
                     
     ADD_PC_Plus4: Adder port map(X => PC_CURRENT,
-                                 Y => x"4",
+                                 Y => x"00000004",
                                  SUM => PC_PLUS4);
                                  
     ADD_PC_Branch: Adder port map(X => PC_PLUS4,

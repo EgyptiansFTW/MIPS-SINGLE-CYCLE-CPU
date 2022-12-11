@@ -24,7 +24,7 @@ entity DataMemory is
         WEN       : in STD_LOGIC;
         REN       : in STD_LOGIC;
         WriteData : in STD_LOGIC_VECTOR (31 downto 0);
-        Address   : in STD_LOGIC_VECTOR (addr-1 downto 0);
+        Address   : in STD_LOGIC_VECTOR (31 downto 0);
         ReadData  : out STD_LOGIC_VECTOR (31 downto 0) := (others => '0') );
 end DataMemory;
 
@@ -66,18 +66,18 @@ begin
     process(Clk, WEN, REN) 
         begin
         if rising_edge(Clk) then
-            if  (to_integer(unsigned(Address)) mod 4) = 0 then
+            if  (to_integer(unsigned(Address(addr-1 downto 0))) mod 4) = 0 then
                 if WEN = '1' then
-                    DatMem(to_integer(unsigned(Address))) <= to_bitvector(WriteData(7 downto 0));
-                    DatMem(to_integer(unsigned(Address))+1) <= to_bitvector(WriteData(15 downto 8));
-                    DatMem(to_integer(unsigned(Address))+2) <= to_bitvector(WriteData(23 downto 16));
-                    DatMem(to_integer(unsigned(Address))+3) <= to_bitvector(WriteData(31 downto 24));
+                    DatMem(to_integer(unsigned(Address(addr-1 downto 0)))) <= to_bitvector(WriteData(7 downto 0));
+                    DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+1) <= to_bitvector(WriteData(15 downto 8));
+                    DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) <= to_bitvector(WriteData(23 downto 16));
+                    DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) <= to_bitvector(WriteData(31 downto 24));
                 end if;
                 if REN = '1' then
-                    ReadData(7 downto 0) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))) );
-                    ReadData(15 downto 8) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+1) );
-                    ReadData(23 downto 16) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+2) );
-                    ReadData(31 downto 24) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address))+3) );
+                    ReadData(7 downto 0) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))) );
+                    ReadData(15 downto 8) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+1) );
+                    ReadData(23 downto 16) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) );
+                    ReadData(31 downto 24) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) );
                 end if;
             end if;
         end if;

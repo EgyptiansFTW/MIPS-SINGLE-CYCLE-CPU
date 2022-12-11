@@ -26,12 +26,12 @@ architecture Behavioral of InstructionMemory_tb is
             depth: INTEGER := 2**11 );
         port(
             Clk          : in STD_LOGIC;
-            Address      : in STD_LOGIC_VECTOR (addr-1 downto 0);
+            Address      : in STD_LOGIC_VECTOR (31 downto 0);
             Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
     end component InstructionMemory;
 
     signal Clk_tb: std_logic := '0';
-    signal Address_tb: std_logic_vector(10 downto 0);
+    signal Address_tb: std_logic_vector(31 downto 0);
     signal Instruction_tb: std_logic_vector(31 downto 0);
 
 begin
@@ -47,13 +47,13 @@ begin
     
     process 
         begin 
-            Address_tb <= "00000000000"; --Addr 0
+            Address_tb <= x"0"; --Addr 0
         wait for 16ns;    
-            Address_tb <= "00000000010"; --Addr 2
+            Address_tb <= x"2"; --Addr 2
         wait for 16ns;    
-            Address_tb <= "00000000100"; --Addr 4
+            Address_tb <= x"4"; --Addr 4
         wait for 16ns;    
-            Address_tb <= "00000001000"; --Addr 8
+            Address_tb <= x"8"; --Addr 8
         wait for 16ns;    
             Address_tb <= "11111111100"; --Addr 2044
         wait;

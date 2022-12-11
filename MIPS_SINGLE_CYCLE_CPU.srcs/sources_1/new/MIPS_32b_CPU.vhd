@@ -43,7 +43,7 @@ architecture Behavioral of MIPS_32b_CPU is
         port(
             signal OPCODE : in std_logic_vector(5 downto 0);
             signal REGDST, ALUSRC, MEMTOREG, REGWRITE, MEMREAD : out std_logic;
-            signal MEMWRITE, BRANCH, JUMP, JPLINK, JUMPRST  : out std_logic;
+            signal MEMWRITE, BRANCH, JUMP: out std_logic;
             signal ALUOP : out std_logic_vector(1 downto 0)  
         );
     end component control;
@@ -82,8 +82,6 @@ begin
                                     MEMWRITE => MemWrite_top,
                                     BRANCH => BRANCH_top,
                                     JUMP => JUMP_top,
-                                    JPLINK => ,
-                                    JUMPRST => ,
                                     ALUOP => ALUOP_top);
                         
 end Behavioral;

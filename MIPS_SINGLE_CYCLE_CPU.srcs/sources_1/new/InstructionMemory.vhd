@@ -21,7 +21,7 @@ entity InstructionMemory is
         depth : INTEGER := 2**11 );   -- Using 32 x 2**8 memory array
     port(
         Clk          : in STD_LOGIC;
-        Address      : in STD_LOGIC_VECTOR (addr-1 downto 0);
+        Address      : in STD_LOGIC_VECTOR (31 downto 0);
         Instruction  : out STD_LOGIC_VECTOR (31 downto 0) );
 end InstructionMemory;
 
@@ -62,11 +62,11 @@ begin
     process(Clk) 
         begin
         if rising_edge(Clk) then
-            if  (to_integer(unsigned(Address)) mod 4) = 0 then
-                Instruction(7 downto 0) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))) );
-                Instruction(15 downto 8) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+1) );
-                Instruction(23 downto 16) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+2) );
-                Instruction(31 downto 24) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address))+3) );
+            if  (to_integer(unsigned(Address(addr-1 downto 0))) mod 4) = 0 then
+                Instruction(7 downto 0) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address(addr-1 downto 0)))) );
+                Instruction(15 downto 8) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address(addr-1 downto 0)))+1) );
+                Instruction(23 downto 16) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) );
+                Instruction(31 downto 24) <= to_stdlogicvector( IstrMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) );
             end if;
         end if;
     end process;

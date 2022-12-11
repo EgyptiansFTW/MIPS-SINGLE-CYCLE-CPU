@@ -5,7 +5,7 @@ entity control is
     port(
         signal OPCODE : in std_logic_vector(5 downto 0);
         signal REGDST, ALUSRC, MEMTOREG, REGWRITE, MEMREAD : out std_logic;
-        signal MEMWRITE, BRANCH, JUMP, JPLINK, JUMPRST  : out std_logic;
+        signal MEMWRITE, BRANCH, JUMP: out std_logic;
         signal ALUOP : out std_logic_vector(1 downto 0)  
     );
 end entity control;
@@ -25,8 +25,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "11";
 
                     when "100011" =>   -- load word
@@ -38,8 +36,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "00";
 
                     when "101011" =>   -- store word
@@ -51,8 +47,6 @@ architecture behavior of control is
                         MEMWRITE <= '1';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "00";
 
                     when "000100" =>   -- branch on equal
@@ -64,8 +58,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '1';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "01";
 
                     when "000010" =>   -- jump
@@ -77,8 +69,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '1';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "--";
 
                     when "001000" =>   -- add immediate
@@ -90,8 +80,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "00";
 
                     when "001010" =>   -- set less than immediate
@@ -103,35 +91,7 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "10";
-
-                    when "000011" =>   -- jump and link
-                        REGDST <= '-';
-                        ALUSRC <= '-';
-                        MEMTOREG <= '-';
-                        REGWRITE <= '1';
-                        MEMREAD <= '0';
-                        MEMWRITE <= '0';
-                        BRANCH <= '0';
-                        JUMP <= '1';
-                        JPLINK <= '1';
-                        JUMPRST <= '0';
-                        ALUOP <= "--";
-
-                    when "000110" =>   -- jump register
-                        REGDST <= '-';
-                        ALUSRC <= '-';
-                        MEMTOREG <= '-';
-                        REGWRITE <= '0';
-                        MEMREAD <= '0';
-                        MEMWRITE <= '0';
-                        BRANCH <= '0';
-                        JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '1';
-                        ALUOP <= "--";
 
                     when others => 
                         REGDST <= '-';
@@ -142,8 +102,6 @@ architecture behavior of control is
                         MEMWRITE <= '0';
                         BRANCH <= '0';
                         JUMP <= '0';
-                        JPLINK <= '0';
-                        JUMPRST <= '0';
                         ALUOP <= "--";
                 end case;
         end process;
