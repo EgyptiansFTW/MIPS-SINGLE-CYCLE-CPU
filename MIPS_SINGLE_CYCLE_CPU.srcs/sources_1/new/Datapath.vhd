@@ -134,11 +134,10 @@ architecture Behavioral of Datapath is
     signal R_DP, LO_DP, HI_DP : std_logic_vector(width-1 downto 0);
     
 ------ REGISTER SIGNALS --------------------------------------------
-    signal CLK_DP       : STD_LOGIC;
-    signal AddrR1_DP    : STD_LOGIC_VECTOR (4 downto 0);
-    signal AddrR2_DP    : STD_LOGIC_VECTOR (4 downto 0);
-    signal AddrWR_DP    : STD_LOGIC_VECTOR (4 downto 0);
-    signal WriteReg_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
+--    signal AddrR1_DP    : STD_LOGIC_VECTOR (4 downto 0);
+--    signal AddrR2_DP    : STD_LOGIC_VECTOR (4 downto 0);
+--    signal AddrWR_DP    : STD_LOGIC_VECTOR (4 downto 0);
+--    signal WriteReg_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     signal ReadReg1_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     signal ReadReg2_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     
