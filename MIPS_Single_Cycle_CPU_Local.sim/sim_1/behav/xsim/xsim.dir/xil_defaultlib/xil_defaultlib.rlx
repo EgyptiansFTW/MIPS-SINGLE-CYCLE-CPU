@@ -1,0 +1,23 @@
+0.7
+2020.2
+Oct 14 2022
+05:07:14
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sim_1/new/ALU_CONTROL_TB.vhd,1670316551,vhdl,,,,alu_control_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/ALU.vhd,1670315918,vhdl,,,,alu,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/ALU_CONTROL.vhd,1670315918,vhdl,/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sim_1/new/ALU_CONTROL_TB.vhd,,,alucontrol,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/Adder.vhd,1670400690,vhdl,,,,adder,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/DataMemory.vhd,1670798561,vhdl,,,,datamemory,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/DataMemory_tb.vhd,1670790864,vhdl,,,,datamemory_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/InstructionMemory.vhd,1670799575,vhdl,,,,instructionmemory,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/InstructionMemory_tb.vhd,1670789522,vhdl,,,,instructionmemory_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/new/Control.vhd,1670796692,vhdl,,,,control,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ComponentPkg.vhd,1670800083,vhdl,/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Datapath.vhd,,,componentpkg,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Datapath.vhd,1670799817,vhdl,,,,datapath,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/MIPS_32b_CPU.vhd,1670798739,vhdl,,,,mips_32b_cpu,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/MIPS_32b_CPU_tb.vhd,1670799368,vhdl,,,,mips_32b_cpu_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Registers.vhd,1670743499,vhdl,,,,registers,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Registers_tb.vhd,1670743464,vhdl,,,,registers_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ShiftRegister.vhd,1670742468,vhdl,,,,shiftregister,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ShiftRegister_tb.vhd,1670398263,vhdl,,,,shiftregister_tb,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/SignExtend.vhd,1670387643,vhdl,,,,signextend,,,,,,,,
+/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/SignExtend_tb.vhd,1670388863,vhdl,,,,signextend_tb,,,,,,,,

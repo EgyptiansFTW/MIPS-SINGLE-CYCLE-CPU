@@ -1,0 +1,18 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/ALU.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/ALU_CONTROL.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/Adder.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ComponentPkg.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/new/Control.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/DataMemory.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Datapath.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/imports/MIPS_SINGLE_CYCLE_CPU.srcs/sources_1/new/InstructionMemory.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/MIPS_32b_CPU.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Registers.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ShiftRegister.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/SignExtend.vhd" \
+"../../../../MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/MIPS_32b_CPU_tb.vhd" \
+
+# Do not sort compile order
+nosort

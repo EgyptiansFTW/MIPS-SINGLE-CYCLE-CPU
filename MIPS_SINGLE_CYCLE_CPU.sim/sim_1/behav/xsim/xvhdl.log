@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-INFO: [VRFC 10-163] Analyzing VHDL file "E:/Xilinx/MIPS_SINGLE_CYCLE_CPU/MIPS-SINGLE-CYCLE-CPU/MIPS_SINGLE_CYCLE_CPU.srcs/sim_1/new/ALU_TB.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'ALU_TB'
-=======
->>>>>>> 24cead4 (Adding Instr&Data Memory)

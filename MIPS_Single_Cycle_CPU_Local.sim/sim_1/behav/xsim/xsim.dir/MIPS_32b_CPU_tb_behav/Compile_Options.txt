@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "secureip" --snapshot "MIPS_32b_CPU_tb_behav" "xil_defaultlib.MIPS_32b_CPU_tb" -log "elaborate.log" 
