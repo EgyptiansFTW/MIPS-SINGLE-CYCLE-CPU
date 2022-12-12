@@ -1,3 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/ComponentPkg.vhd" into library xil_defaultlib
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/benisneb/Documents/SchoolWork/Engineering/ECE_524L_FPGA_ASIC/MIPS_Single_Cycle_CPU_Local/MIPS_Single_Cycle_CPU_Local.srcs/sources_1/new/Datapath.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'Datapath'

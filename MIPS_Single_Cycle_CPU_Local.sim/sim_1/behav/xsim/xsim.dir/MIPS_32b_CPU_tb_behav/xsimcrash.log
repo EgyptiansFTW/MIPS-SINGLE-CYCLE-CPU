@@ -1,0 +1,12 @@
+Printing stacktrace...
+
+[0] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/librdi_simulator_kernel.so(+0x18b686) [0x7f0d909f8686]
+[1] xsim.dir/MIPS_32b_CPU_tb_behav/xsimk(+0x62bb) [0x55a63cb002bb]
+[2] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/librdi_simulator_kernel.so(+0x2ec3d6) [0x7f0d90b593d6]
+[3] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/librdi_simulator_kernel.so(ISIMK::Kernel::callProcessExecuteFunctions()+0x5c) [0x7f0d90b584dc]
+[4] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/librdi_simulator_kernel.so(ISIMK::HdlQ::processTimeSlots()+0xbd) [0x7f0d90b4effd]
+[5] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/librdi_simulator_kernel.so(ISIMK::GDBMIHost::runSimulationLoop()+0x149) [0x7f0d90b49219]
+[6] /tools/Xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu/libstdc++.so.6(+0xbadff) [0x7f0d8fabadff]
+[7] /lib/x86_64-linux-gnu/libc.so.6(+0x94b43) [0x7f0d9060ab43]
+[8] /lib/x86_64-linux-gnu/libc.so.6(+0x126a00) [0x7f0d9069ca00]
+Done

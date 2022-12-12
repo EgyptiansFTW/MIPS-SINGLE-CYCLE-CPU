@@ -129,15 +129,10 @@ architecture Behavioral of Datapath is
     
 ------ ALU SIGNALS -------------------------------------------------
     signal SHAMT_DP : std_logic_vector(4 downto 0);
-    signal X_DP, Y_DP : std_logic_vector(31 downto 0);
     signal Z_DP : std_logic;
     signal R_DP, LO_DP, HI_DP : std_logic_vector(width-1 downto 0);
     
 ------ REGISTER SIGNALS --------------------------------------------
---    signal AddrR1_DP    : STD_LOGIC_VECTOR (4 downto 0);
---    signal AddrR2_DP    : STD_LOGIC_VECTOR (4 downto 0);
---    signal AddrWR_DP    : STD_LOGIC_VECTOR (4 downto 0);
---    signal WriteReg_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     signal ReadReg1_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     signal ReadReg2_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     
@@ -146,43 +141,31 @@ architecture Behavioral of Datapath is
     
 ------ SHIFT SIGNALS -----------------------------------------------
     signal ShiftInput_DP : std_logic_vector(31 downto 0);
-    signal ShiftOutput_DP: std_logic_vector(31 downto 0);
 
 ------ INSTRUCTION MEMORY SIGNALS ----------------------------------
-    signal Address_I_DP    : STD_LOGIC_VECTOR (addr-1 downto 0);
     signal Instruction_DP  : STD_LOGIC_VECTOR (width-1 downto 0);
     
 ------ DATA MEMORY SIGNALS -----------------------------------------
-    signal WriteData_DP: STD_LOGIC_VECTOR (width-1 downto 0);
-    signal Address_D_DP: STD_LOGIC_VECTOR (addr-1 downto 0);
     signal ReadData_DP : STD_LOGIC_VECTOR (width-1 downto 0);
     
------- ADDER SIGNALS -----------------------------------------------
-    signal X_DP_ADD  : STD_LOGIC_VECTOR (width-1 downto 0);
-    signal Y_DP_ADD  : STD_LOGIC_VECTOR (width-1 downto 0);
-    signal SUM_DP_ADD: STD_LOGIC_VECTOR (width-1 downto 0);
+-------- ADDER SIGNALS -----------------------------------------------
+    signal BRANCH_PRE_ADD : std_logic_vector(width-1 downto 0);
+        -- Sign extend is shifted left by 2, pre-adder signal 
+    signal BRANCH_POST_ADD : std_logic_vector(width-1 downto 0);
+        -- BRANCH_PRE_ADD is added with PC+4
     
------- MUX SIGNALS -------------------------------------------------
-    signal SEL_DP    : std_logic;
-    signal A_DP, B_DP: std_logic_vector(width-1 downto 0);
-    signal O_DP      : std_logic_vector(width-1 downto 0);
+    signal PC_CURRENT : std_logic_vector(width-1 downto 0) := (others => '0');
+    signal PC_PLUS4 : std_logic_vector(width-1 downto 0);
     
 ------ WIRING SIGNALS -------------------------------------------------
-    signal PC_CURRENT : std_logic_vector(width-1 downto 0) := (others => '0');
     signal PC_NEXT : std_logic_vector(width-1 downto 0);
-    signal PC_PLUS4 : std_logic_vector(width-1 downto 0);
     
     signal JUMP_ADDR_NO_PC : std_logic_vector(width-1 downto 0); 
         -- Has Instruction 25-0 shifted left by 2    
     signal JUMP_ADDR : std_logic_vector(width-1 downto 0); 
         -- Has Instruction 25-0 shifted left by 2 & PC+4 in 31-28
-    signal BRANCH_PRE_ADD : std_logic_vector(width-1 downto 0);
-        -- Sign extend is shifted left by 2, pre-adder signal 
-    signal BRANCH_POST_ADD : std_logic_vector(width-1 downto 0);
-        -- BRANCH_PRE_ADD is added with PC+4
     signal BRANCH_ADDR : std_logic_vector(width-1 downto 0);
         -- Result of MUX between Branch_Post_Add & PC+4
-        
     signal WRITE_ADDR : std_logic_vector(4 downto 0);
         -- MUX out from Instruction 20-16 or 15-11 (RegDst Control Signal)    
     signal ALU_2ndValue : std_logic_vector(width-1 downto 0);
@@ -250,21 +233,31 @@ begin
     
     ALU_2ndValue <= ExtendOut_DP when ALUSrc = '1' else ReadReg2_DP;
         -- MUX based on control signal ALUSrc
+        
     WRITE_ADDR <= Instruction_DP(15 downto 11) when RegDst = '1' else Instruction_DP(20 downto 16);
         -- MUX based on control signal RegDst
+        
     BRANCH_ADDR <= BRANCH_POST_ADD when (BRANCH AND Z_DP) = '1' else PC_PLUS4;
         -- MUX based on control signal Branch and Zero flag from ALU
+        
     PC_NEXT <= JUMP_ADDR when JUMP = '1' else BRANCH_ADDR;
         -- MUX based on control signal JUMP (either PC+4, Branch, or JUMP) 
-    
+        
+    WRITE_BACK_DATA <= ReadData_DP when MemToReg = '1' else R_DP;
+        -- MUX based on control signal MemToReg (either Read from DataMem or ALU result) 
+        
     JUMP_ADDR <= PC_PLUS4(31 downto 28) & JUMP_ADDR_NO_PC(27 downto 0);
         -- Assign JumpADDR first 4 bits of PC & INST(25-0) shifted by 2
+        
     ShiftInput_DP <= "000000" & Instruction_DP(25 downto 0);
         -- Input INST(25-0) that will be shifted into JUMP_ADDR_NO_PC
+        
     SHAMT_DP <= Instruction_DP(10 downto 6);
         -- Shift amount for ALU instruction 
+        
     FUNCT_DP <= Instruction_DP(5 downto 0);
-        -- ALU Control function based on INST(5-0)
+        -- ALU Control function based on INST(5)
+        
     OPCODE_DP <= Instruction_DP(31 downto 26);
         -- Assign opcode based on INST(31-26)
     

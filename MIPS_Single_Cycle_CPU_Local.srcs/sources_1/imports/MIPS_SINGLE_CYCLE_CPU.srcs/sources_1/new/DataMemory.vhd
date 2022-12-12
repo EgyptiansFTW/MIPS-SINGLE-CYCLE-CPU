@@ -53,10 +53,10 @@ architecture Behavioral of DataMemory is
         return tmpMEM;
     end function;
     
---    signal DatMem: memory := (others => (others => '0'));
+    signal DatMem: memory := (others => (others => '0'));
         -- Initialize all memory locations to be '0'
     
-    signal DatMem : memory := InitRamFromFile("instrMem.data");
+--    signal DatMem : memory := InitRamFromFile("instrMem.data");
         -- Initialize all memory locations from specified file
     
 begin

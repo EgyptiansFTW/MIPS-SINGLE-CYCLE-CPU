@@ -25,8 +25,8 @@ entity Registers is
         LO        : in STD_LOGIC_VECTOR (width-1 downto 0);
         HI        : in STD_LOGIC_VECTOR (width-1 downto 0);
         WriteReg  : in STD_LOGIC_VECTOR (width-1 downto 0);
-        ReadReg1  : out STD_LOGIC_VECTOR (width-1 downto 0);
-        ReadReg2  : out STD_LOGIC_VECTOR (width-1 downto 0));
+        ReadReg1  : out STD_LOGIC_VECTOR (width-1 downto 0) := (others => '0');
+        ReadReg2  : out STD_LOGIC_VECTOR (width-1 downto 0) := (others => '0'));
 end Registers;
 
 architecture Behavioral of Registers is
@@ -46,7 +46,7 @@ begin
         begin
         if rising_edge(CLK) then
             if WEN = '1' then
-                if NOT( (AddrR1 OR AddrR2) = ("11111" OR "11110") ) then 
+                if NOT( (AddrR1 = x"1e") OR (AddrR1 = x"1f") OR (AddrR2 = x"1e") OR (AddrR2 = x"1f") ) then 
                     RegFile(to_integer(unsigned(AddrWR))) <= WriteReg;
                 else
                     if NOT(LO = LO_previous) then
