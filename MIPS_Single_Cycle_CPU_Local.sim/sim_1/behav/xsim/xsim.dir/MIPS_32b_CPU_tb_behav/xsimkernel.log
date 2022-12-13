@@ -1,4 +1,4 @@
-Running: xsim.dir/MIPS_32b_CPU_tb_behav/xsimk -simmode gui -wdb MIPS_32b_CPU_tb_behav.wdb -simrunnum 0 -socket 45699
+Running: xsim.dir/MIPS_32b_CPU_tb_behav/xsimk -simmode gui -wdb MIPS_32b_CPU_tb_behav.wdb -simrunnum 0 -socket 39737
 Design successfully loaded
 Design Loading Memory Usage: 29244 KB (Peak: 29728 KB)
-Design Loading CPU Usage: 30 ms
+Design Loading CPU Usage: 60 ms

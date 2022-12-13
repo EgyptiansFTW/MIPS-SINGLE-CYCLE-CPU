@@ -73,13 +73,17 @@ begin
                     DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) <= to_bitvector(WriteData(15 downto 8));
                     DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) <= to_bitvector(WriteData(7 downto 0));
                 end if;
-                if REN = '1' then
-                    ReadData(31 downto 24) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))) );
-                    ReadData(23 downto 16) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+1) );
-                    ReadData(15 downto 8) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) );
-                    ReadData(7 downto 0) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) );
-                end if;
             end if;
+        end if;
+    end process;
+
+    process(REN)
+        begin
+        if REN = '1' then
+            ReadData(31 downto 24) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))) );
+            ReadData(23 downto 16) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+1) );
+            ReadData(15 downto 8) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+2) );
+            ReadData(7 downto 0) <= to_stdlogicvector( DatMem(to_integer(unsigned(Address(addr-1 downto 0)))+3) );
         end if;
     end process;
 
